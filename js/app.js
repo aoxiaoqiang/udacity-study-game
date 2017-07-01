@@ -36,14 +36,20 @@ Enemy.prototype.render = function() {
  * 玩家类
  */
 var Player = function() {
-  this.x = 100      // 初始化水平位置
-  this.y = 400      // 初始化垂直位置
-  this.sprite = 'images/char-boy.png';  // 敌人的图片
+  // 初始化水平位置
+  this.x = Math.floor(Math.random() * 5) * 100
+
+  // 初始化垂直位置
+  this.y = 400
+
+  // 玩家的图片
+  this.sprite = 'images/char-boy.png';
 }
 
 // 更新玩家的位置
 Player.prototype.update = function() {
-  console.log(this.x, this.y)
+  crashHandle()
+    // console.log(this.x, this.y)
 }
 
 // 在屏幕上画出玩家
@@ -55,11 +61,15 @@ Player.prototype.render = function() {
 Player.prototype.handleInput = function(direction) {
   switch (direction) {
     case 'up':
-      if (this.y < 72) {
-        console.log('超出上边界!')
-        this.y = 400
+      this.y -= 82
+      if (this.y == -10) {
+        console.log('到达目的地!')
       } else {
-        this.y -= 82
+        if (this.y < 72) {
+          console.log('超出上边界!')
+          this.y = 400
+          // this.x = Math.floor(Math.random() * 5) * 100
+        }
       }
       break;
     case 'right':
@@ -96,6 +106,15 @@ for (var i = 0; i < 3; i++) {
 // 实例化一个玩家对象 player
 var player = new Player()
 
+// 碰撞检测处理：玩家回到起点位置
+function crashHandle() {
+  for (var i = 0; i < allEnemies.length; i++) {
+    if (Math.abs(player.x - allEnemies[i].x) <= 50 && Math.abs(player.y - allEnemies[i].y) <= 20) {
+      console.log('crash')
+      player.y = 400
+    }
+  }
+}
 
 // 这段代码监听游戏玩家的键盘点击事件并且代表将按键的关键数字送到 Play.handleInput()
 // 方法里面。你不需要再更改这段代码了。
