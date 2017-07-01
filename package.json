@@ -1,0 +1,23 @@
+{
+  "name": "udacity-study-game",
+  "version": "1.0.0",
+  "description": "前端纳米学位街机游戏 =============================== ### 项目运行 1. 项目需要创建一个本地服务器。本项目使用的是nodejs 中的 anywhere 模块创建的本地静态服务器。因此首先需要安装[NodeJs](https://nodejs.org)。 2. 下载项目源文件，通过命令行窗口进入到项目根目录 udacity-study-game 文件夹。 3. 安装创建服务器所需要的 anywhere 模块。运行 **`npm install anywhere --save-dev`** 命令。 4. 运行 **`anywherr`** 命令，浏览器会自动打开项目根目录下的 index.html 项目启动成功。",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ao-xiaoqiang/udacity-study-game.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ao-xiaoqiang/udacity-study-game/issues"
+  },
+  "homepage": "https://github.com/ao-xiaoqiang/udacity-study-game#readme",
+  "devDependencies": {
+    "anywhere": "^1.4.0"
+  }
+}
