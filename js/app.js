@@ -15,7 +15,6 @@ var Enemy = function(i) {
   this.sprite = 'images/enemy-bug.png';
 };
 
-
 /**
  * 此为游戏必须的函数，用来更新敌人的位置
  * @param  {number} dt 表示时间间隙
@@ -52,6 +51,40 @@ var Player = function() {
 
   // 玩家的图片
   this.sprite = 'images/char-boy.png';
+
+  // 玩家移动次数
+  this.moveTime = 0
+
+  // 玩家积分
+  this.score = 0
+
+  // 玩家失败次数
+  this.deathTime = 0
+}
+
+/**
+ * 更新玩家统计数据(移动次数, 成功次数, 失败次数)
+ */
+Player.prototype.updateScore = function() {
+  document.querySelector('#moveTime').innerText = this.moveTime
+  document.querySelector('#score').innerText = this.score
+  document.querySelector('#deathTime').innerText = this.deathTime
+
+  // 积分等级不同显示不同的用户皮肤图片
+  switch(this.score){
+    case 2:
+      this.sprite = 'images/char-cat-girl.png';
+      break;
+    case 5:
+      this.sprite = 'images/char-horn-girl.png';
+      break;
+    case 9:
+      this.sprite = 'images/char-pink-girl.png';
+      break;
+    case 14:
+      this.sprite = 'images/char-princess-girl.png';
+      break;
+  }
 }
 
 /**
@@ -77,11 +110,17 @@ Player.prototype.handleInput = function(direction) {
     LEFT_LEMIT = 100,
     STEP_Y = 82;
 
+  // 玩家移动次数统计加1
+  this.moveTime++;
+  this.updateScore()
+
   switch (direction) {
     case 'up':
       this.y -= STEP_Y
       if (this.y == -10) {
         log('到达目的地!');
+        this.score += 1;
+        this.updateScore()
       } else {
         if (this.y < 72) {
           log('超出上边界!');
@@ -116,7 +155,7 @@ Player.prototype.handleInput = function(direction) {
 }
 
 // 实例化所有(3个)敌人， 放入 allEnemies 数组中。
-var allEnemies = []
+var allEnemies = [];
 for (var i = 0; i < 3; i++) {
   allEnemies.push(new Enemy(i));
 }
@@ -132,6 +171,8 @@ function crashHandle() {
     if (Math.abs(player.x - allEnemies[i].x) <= 50 && Math.abs(player.y - allEnemies[i].y) <= 20) {
       log('碰撞发生');
       player.y = 400;
+      player.deathTime += 1;
+      player.updateScore();
     }
   }
 }
@@ -158,3 +199,8 @@ function log(obj) {
     console.log(obj);
   }
 }
+
+
+
+
+
