@@ -15,4 +15,5 @@
 
 [项目要求](https://review.udacity.com/#!/rubrics/499/view)
 [代码样式标准](http://udacity.github.io/frontend-nanodegree-styleguide/javascript.html)
+[JSHint](http://jshint.com/)
 [项目指导](https://gdgdocs.org/document/d/1v01aScPjSWCCWQLIpFqvg3-vXLH2e8_SZQKC8jNO0Dc/pub?embedded=true)
