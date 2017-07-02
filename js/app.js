@@ -202,7 +202,7 @@ document.addEventListener('keyup', function(e) {
   player.handleInput(allowedKeys[e.keyCode]);
 })
 
-var isDebug = true;
+var isDebug = false;
 /**
  * 控制台输出对象
  * @param  {Object} obj 要输出的对象
