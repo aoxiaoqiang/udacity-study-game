@@ -19,3 +19,36 @@ h3 span{
 .text-danger{
     color: red;
 }
+.usage-text{
+    font-size: 12px;
+    line-height: 20px;
+
+    width: 500px;
+    margin: 0 auto;
+
+    text-align: left;
+    // height: 20px;
+}
+code{
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 20px;
+
+    display: inline-block;
+
+    width: 20px;
+    height: 20px;
+    margin: 0 1px;
+
+    text-align: center;
+
+    border: 1px solid #b7b7b7;
+    border-top-color: #dedede;
+    border-left-color: #dedede;
+    border-radius: 3px;
+    background: #e2e2e2;
+}
+
+canvas{
+    margin-top: -30px;
+}

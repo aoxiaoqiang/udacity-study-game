@@ -110,22 +110,22 @@ Player.prototype.handleInput = function(direction) {
     LEFT_LEMIT = 100,
     STEP_Y = 82;
 
-  // 玩家移动次数统计加1
-  this.moveTime++;
-  this.updateScore()
-
   switch (direction) {
     case 'up':
       this.y -= STEP_Y
       if (this.y == -10) {
         log('到达目的地!');
         this.score += 1;
-        this.updateScore()
+        // 玩家移动次数统计加1
+        this.moveTime++;
       } else {
         if (this.y < 72) {
           log('超出上边界!');
           this.y = RIGHT_LIMIT;
           // this.x = Math.floor(Math.random() * 5) * 100
+        }else{
+          // 玩家移动次数统计加1
+          this.moveTime++;
         }
       }
       break;
@@ -134,6 +134,8 @@ Player.prototype.handleInput = function(direction) {
         log('超出右边界!');
       } else {
         this.x += LEFT_LEMIT;
+        // 玩家移动次数统计加1
+        this.moveTime++;
       }
       break;
     case 'down':
@@ -141,6 +143,8 @@ Player.prototype.handleInput = function(direction) {
         log('超出下边界!');
       } else {
         this.y += STEP_Y;
+        // 玩家移动次数统计加1
+        this.moveTime++;
       }
       break;
     case 'left':
@@ -148,10 +152,13 @@ Player.prototype.handleInput = function(direction) {
         log('超出左边界!');
       } else {
         this.x -= LEFT_LEMIT;
+        // 玩家移动次数统计加1
+        this.moveTime++;
       }
       break;
   }
   log(this.x, this.y);
+  this.updateScore();
 }
 
 // 实例化所有(3个)敌人， 放入 allEnemies 数组中。
@@ -179,17 +186,23 @@ function crashHandle() {
 
 // 这段代码监听游戏玩家的键盘点击事件并且代表将按键的关键数字送到 Play.handleInput() 方法里面。你不需要再更改这段代码了。
 document.addEventListener('keyup', function(e) {
+  log(e.keyCode)
+
   var allowedKeys = {
     37: 'left',
+    65: 'left',
     38: 'up',
+    87: 'up',
     39: 'right',
-    40: 'down'
+    68: 'right',
+    40: 'down',
+    83: 'down'
   };
-
+  // 增加键位(w-> up, d-> right, s-> down, a-> left )
   player.handleInput(allowedKeys[e.keyCode]);
 })
 
-var isDebug = false;
+var isDebug = true;
 /**
  * 控制台输出对象
  * @param  {Object} obj 要输出的对象
